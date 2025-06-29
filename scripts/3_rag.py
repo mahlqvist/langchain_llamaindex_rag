@@ -18,6 +18,7 @@ logging.basicConfig(level=logging.ERROR, filename="test.log", filemode="a",
                     format="%(asctime)s from %(name)s: %(levelname)s - %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 
 env_path = os.path.join(os.getcwd(), "config", ".env")
+doc_path = os.path.join(os.getcwd(), "data", "dissociating_ai_from_ac.pdf")
 
 _ = load_dotenv(dotenv_path=env_path)
 
@@ -37,9 +38,6 @@ light_llm = ChatOpenAI(
     model="gpt-4.1-nano",
     temperature=0,
 )
-
-env_path = os.path.join(os.getcwd(), "config", ".env")
-doc_path = os.path.join(os.getcwd(), "data", "dissociating_ai_from_ac.pdf")
 
 # Initialize ChromaDB client and collection
 db = chromadb.PersistentClient(path="chroma_db_test")
