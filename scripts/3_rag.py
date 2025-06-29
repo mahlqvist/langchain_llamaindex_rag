@@ -76,7 +76,7 @@ else:
 
 
 def retrieve_chunks(query: str):
-    retriever = index.as_retriever(similarity_top_k=2)
+    retriever = index.as_retriever(similarity_top_k=10)
     retrieved_nodes = retriever.retrieve(query)
 
     return retrieved_nodes
