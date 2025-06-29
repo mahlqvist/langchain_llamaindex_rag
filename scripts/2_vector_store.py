@@ -1,16 +1,9 @@
-import os
-from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 import chromadb
-from langchain_core.runnables import RunnablePassthrough, RunnableLambda
 from llama_index.core import VectorStoreIndex, StorageContext
 from llama_index.vector_stores.chroma.base import ChromaVectorStore
 from llama_index.core import SimpleDirectoryReader
 from llama_index.core.node_parser import SentenceSplitter
-from llama_index.core import get_response_synthesizer
-from langchain_openai import ChatOpenAI
-from langchain_core.prompts import PromptTemplate
-from langchain_core.output_parsers import StrOutputParser
 import logging
 from dotenv import load_dotenv
 import os
@@ -28,18 +21,6 @@ api_key = os.getenv("OPENAI_API_KEY")
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
 )
-
-llm_heavy = ChatOpenAI(
-    model="gpt-4.1-mini",
-    temperature=0.3,
-    top_p=0.9,
-)
-
-light_llm = ChatOpenAI(
-    model="gpt-4.1-nano",
-    temperature=0,
-)
-
 
 env_path = os.path.join(os.getcwd(), "config", ".env")
 doc_path = os.path.join(os.getcwd(), "data", "dissociating_ai_from_ac.pdf")

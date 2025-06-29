@@ -1,5 +1,3 @@
-import os
-from dotenv import load_dotenv
 from langchain_openai import OpenAIEmbeddings
 import chromadb
 from langchain_core.runnables import RunnablePassthrough, RunnableLambda
@@ -39,7 +37,6 @@ light_llm = ChatOpenAI(
     model="gpt-4.1-nano",
     temperature=0,
 )
-
 
 env_path = os.path.join(os.getcwd(), "config", ".env")
 doc_path = os.path.join(os.getcwd(), "data", "dissociating_ai_from_ac.pdf")
