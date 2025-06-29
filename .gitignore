@@ -17,6 +17,7 @@ venv.bak/
 
 # Configuration Files
 config/
+notes/
 
 # Visual Studio Code
 .vscode/* 
