@@ -40,7 +40,7 @@ light_llm = ChatOpenAI(
 )
 
 # Initialize ChromaDB client and collection
-db = chromadb.PersistentClient(path="chroma_db_test")
+db = chromadb.PersistentClient(path="./databases/chroma_db_test")
 my_collection = db.get_or_create_collection(name="artificial_consciousness")
 vector_store = ChromaVectorStore(chroma_collection=my_collection)
 
@@ -141,11 +141,13 @@ overall_chain = (
     # Start with original query
     RunnablePassthrough.assign(
         # Stage 1: Retrieve 
-        chunks=lambda x: retrieve_chunks(x["usr_query"]),
+        chunks=lambda x: retrieve_chunks(x["usr_query"])
+    )
+    .assign(
         # Stage 2: Extract information
         extracted=lambda x: retrieve_chain.invoke(
             {"usr_query": x["usr_query"], 
-             "chunks": retrieve_chunks(x["usr_query"])
+             "chunks": x["chunks"]
             }
         )
     )
